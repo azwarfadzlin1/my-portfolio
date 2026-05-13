@@ -1,3 +1,4 @@
+/* stylelint-disable at-rule-no-unknown */
 @import "tailwindcss";
 
 @theme {
@@ -37,7 +38,7 @@
   
   .glass-card::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none;
+    @apply absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none;
   }
   
   .glass-card:hover::before {
