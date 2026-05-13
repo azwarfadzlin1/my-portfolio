@@ -193,7 +193,7 @@ export default function Home() {
                    <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                    <MonitorPlay className="w-12 h-12 text-zinc-600" />
                    <span className="font-medium">UniMove UI / Video Placeholder</span>
-                   <span className="text-xs text-center px-4">Insert your App UI here</span>
+                   <img src="/unimove_logo.png" alt="UniMove Logo" />
                 </div>
               </div>
               <div className="p-8">
