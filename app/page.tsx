@@ -257,7 +257,7 @@ export default function Home() {
               <div className="p-8">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-2xl font-bold text-white font-heading">Web-Based Product Management System</h3>
-                  <a href="#" className="text-zinc-400 hover:text-white transition-colors">
+                  <a href="http://lrgs.ftsm.ukm.my/users/a209041/myPT3/index.php" className="text-zinc-400 hover:text-white transition-colors">
                     <Code2 className="w-5 h-5" />
                   </a>
                 </div>
