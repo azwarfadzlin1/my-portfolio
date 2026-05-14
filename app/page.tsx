@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, ExternalLink, GraduationCap, Briefcase, Code2, MonitorPlay, Smartphone, Globe, Database, Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
+import unimoveLogo from "../public/unimove_logo.png";
 import { useState } from "react";
 
 const fadeInUp = {
@@ -193,7 +194,7 @@ export default function Home() {
                    <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                    <MonitorPlay className="w-12 h-12 text-zinc-600" />
                    <span className="font-medium">UniMove UI / Video Placeholder</span>
-                   <Image src="/unimove_logo.png" alt="UniMove Logo" width={60} height={60} className="object-contain" />
+                   <Image src={unimoveLogo} alt="UniMove Logo" width={60} height={60} className="object-contain" />
                 </div>
               </div>
               <div className="p-8">
