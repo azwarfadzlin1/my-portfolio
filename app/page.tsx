@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, ExternalLink, GraduationCap, Briefcase, Code2, MonitorPlay, Smartphone, Globe, Database, Download } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
-import unimoveLogo from "../public/unimove_logo.png";
 import { useState } from "react";
 
 const fadeInUp = {
@@ -189,12 +188,17 @@ export default function Home() {
             {/* UniMove Project */}
             <motion.div className="bg-[#0A0A0A] rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition-all shadow-xl" variants={fadeInUp}>
               <div className="aspect-4/3 bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6">
-                {/* Placeholder for UniMove Video/UI */}
-                <div className="w-full h-full bg-zinc-800/50 rounded-xl border border-zinc-700/50 flex flex-col items-center justify-center text-zinc-500 gap-4 group-hover:bg-zinc-800 transition-colors relative overflow-hidden">
-                   <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                   <MonitorPlay className="w-12 h-12 text-zinc-600" />
-                   <span className="font-medium">UniMove UI / Video Placeholder</span>
-                   <Image src={unimoveLogo} alt="UniMove fill className="object-contain />
+                <div className="w-full h-full bg-zinc-800/50 rounded-xl border border-zinc-700/50 group-hover:bg-zinc-800 transition-colors relative overflow-hidden">
+                  <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <video
+                    src="https://qclpiuhdwqbptuswqouv.supabase.co/storage/v1/object/public/unimove_videos/unimove-videos_GqQc8gWa.mp4"
+                    className="relative z-10 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
                 </div>
               </div>
               <div className="p-8">
@@ -223,7 +227,7 @@ export default function Home() {
                   src="/image_portfolio_website.png" 
                   alt="Personal Portfolio Website" 
                   fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                  className="object-contain group-hover:scale-105 transition-transform duration-700 opacity-90"
                 />
               </div>
               <div className="p-8">
