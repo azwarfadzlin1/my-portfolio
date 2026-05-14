@@ -248,7 +248,7 @@ export default function Home() {
             <motion.div className="bg-[#0A0A0A] rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition-all shadow-xl" variants={fadeInUp}>
               <div className="aspect-4/3 bg-zinc-900 relative overflow-hidden">
                 <Image 
-                  src="/product_ui.png" 
+                  src="/web_product.png" 
                   alt="Product Management System" 
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
