@@ -187,12 +187,12 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
             {/* UniMove Project */}
             <motion.div className="bg-[#0A0A0A] rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition-all shadow-xl" variants={fadeInUp}>
-              <div className="aspect-4/3 bg-zinc-900 relative overflow-hidden flex items-center justify-center p-6">
+              <div className="aspect-4/3 bg-zinc-900 relative overflow-hidden flex items-center justify-center p-2">
                 <div className="w-full h-full bg-zinc-800/50 rounded-xl border border-zinc-700/50 group-hover:bg-zinc-800 transition-colors relative overflow-hidden">
                   <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <video
                     src="https://qclpiuhdwqbptuswqouv.supabase.co/storage/v1/object/public/unimove_videos/unimove-videos_GqQc8gWa.mp4"
-                    className="relative z-10 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="relative z-10 h-full w-full object-contain group-hover:scale-[1.02] transition-transform duration-700"
                     autoPlay
                     loop
                     muted
