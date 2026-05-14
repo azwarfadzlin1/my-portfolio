@@ -194,7 +194,7 @@ export default function Home() {
                    <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                    <MonitorPlay className="w-12 h-12 text-zinc-600" />
                    <span className="font-medium">UniMove UI / Video Placeholder</span>
-                   <Image src={unimoveLogo} alt="UniMove Logo" width={60} height={60} className="object-contain" />
+                   <Image src={unimoveLogo} alt="UniMove fill className="object-contain />
                 </div>
               </div>
               <div className="p-8">
@@ -220,7 +220,7 @@ export default function Home() {
             <motion.div className="bg-[#0A0A0A] rounded-3xl overflow-hidden group border border-zinc-800 hover:border-zinc-700 transition-all shadow-xl" variants={fadeInUp}>
               <div className="aspect-4/3 bg-zinc-900 relative overflow-hidden">
                 <Image 
-                  src="/customer_ui.png" 
+                  src="/image_portfolio_website.png" 
                   alt="Personal Portfolio Website" 
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
