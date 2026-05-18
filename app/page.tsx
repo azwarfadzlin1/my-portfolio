@@ -38,7 +38,7 @@ export default function Home() {
           </div>
           <div>
             <a 
-              href="Azwar Fadzlin Resume (SWE) Internship.pdf" 
+              href="Azwar Fadzlin Internship Resume.pdf" 
               download="Azwar_Fadzlin_Resume.pdf"
               className="px-6 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium text-sm transition-all duration-300 flex items-center gap-2 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.05)]"
             >
