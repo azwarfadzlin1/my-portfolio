@@ -5,6 +5,7 @@ import { Mail, MapPin, Phone, ExternalLink, GraduationCap, Briefcase, Code2, Mon
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
+import VisitorCounter from "@/components/VisitorCounter";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -683,6 +684,7 @@ export default function Home() {
             <a href="https://linkedin.com/in/azwarfadzlin/" className="hover:text-white transition-colors">LinkedIn</a>
             <a href="mailto:azwarfadzlin1@gmail.com" className="hover:text-white transition-colors">Email</a>
           </div>
+          <VisitorCounter />
         </div>
       </footer>
     </main>
