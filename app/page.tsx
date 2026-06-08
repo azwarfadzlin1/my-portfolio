@@ -90,7 +90,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-[100px] animate-pulse"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                 <Image 
-                  src="/avatar.png" 
+                  src="/azwar_image.jpeg" 
                   alt="Azwar Fadzlin" 
                   fill 
                   className="object-cover mix-blend-screen opacity-90"
