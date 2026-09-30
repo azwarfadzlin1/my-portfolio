@@ -30,7 +30,7 @@ useEffect(() => {
   return (
     <div className="relative group cursor-default">
       {/* Subtle animated glowing backdrop */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/50 to-indigo-500/50 rounded-full blur-[8px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute -inset-0.5 bg-linear-to-r from-blue-500/50 to-indigo-500/50 rounded-full blur-[8px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
       {/* Badge Content */}
       <div className="relative flex items-center gap-2.5 px-4 py-2 bg-[#09090b]/80 backdrop-blur-md border border-white/10 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300 group-hover:bg-[#09090b] group-hover:border-white/20">
