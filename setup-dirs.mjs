@@ -1,8 +1,10 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const libDir = path.join(__dirname, 'app', 'lib');
-const compDir = path.join(__dirname, 'app', 'components');
+const rootDir = path.dirname(fileURLToPath(import.meta.url));
+const libDir = path.join(rootDir, 'lib');
+const compDir = path.join(rootDir, 'components');
 
 try {
   fs.mkdirSync(libDir, { recursive: true });

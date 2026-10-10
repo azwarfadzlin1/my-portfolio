@@ -3,29 +3,42 @@
 import { useEffect, useState } from "react";
 import { Users } from "lucide-react";
 
+// Share the request across mounts, including React's development effect replay.
+let countRequest: Promise<number> | undefined;
+
+function getVisitorCount() {
+  if (!countRequest) {
+    countRequest = (async () => {
+      const endpoint = process.env.NEXT_PUBLIC_VISITOR_API;
+      if (!endpoint) throw new Error("Visitor API is not configured");
+      const response = await fetch(endpoint, { signal: AbortSignal.timeout(10000) });
+      if (!response.ok) throw new Error("Visitor API request failed");
+      const data: unknown = await response.json();
+      if (!data || typeof data !== "object" || !("count" in data) ||
+          typeof data.count !== "number" || !Number.isSafeInteger(data.count) || data.count < 0) {
+        throw new Error("Invalid visitor count");
+      }
+      return data.count;
+    })().catch((error) => {
+      countRequest = undefined;
+      throw error;
+    });
+  }
+  return countRequest;
+}
+
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
+  const [failed, setFailed] = useState(false);
 
-useEffect(() => {
-  const fetchCount = async () => {
-    try {
-      const visited = localStorage.getItem("visited");
-
-      const response = await fetch(process.env.NEXT_PUBLIC_VISITOR_API!);
-      const data = await response.json();
-
-      setCount(data.count);
-
-      if (!visited) {
-        localStorage.setItem("visited", "true");
-      }
-    } catch (error) {
-      console.error("Failed to fetch visitor count", error);
-    }
-  };
-
-  fetchCount();
-}, []);
+  useEffect(() => {
+    let active = true;
+    getVisitorCount().then(
+      (value) => { if (active) setCount(value); },
+      () => { if (active) setFailed(true); },
+    );
+    return () => { active = false; };
+  }, []);
 
   return (
     <div className="relative group cursor-default">
@@ -44,7 +57,7 @@ useEffect(() => {
         <div className="flex items-center gap-1.5">
           <Users className="w-3.5 h-3.5 text-blue-400" />
           <span className="font-mono text-sm font-bold text-zinc-200 tracking-tight">
-            {count ?? "..."}
+            {failed ? "Unavailable" : count ?? "Loading…"}
           </span>
           <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-500 ml-0.5">
             Visitors
