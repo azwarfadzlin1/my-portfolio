@@ -8,6 +8,13 @@ Run npm ci, then npm run dev. Open http://localhost:3000. Run npm run lint and n
 
 ## Structure
 
+- app/preview/page.tsx and app/preview/preview.css: initial Apple-inspired redesign at /preview. The current homepage remains at /. The preview has its own scoped styles and is marked noindex while under review.
+- components/desktop/DesktopControls.tsx: Malaysia clock/calendar, section dock, project folder shortcuts, and native project dialogs. On phones, dialogs fill the screen and the clock uses a compact digital display.
+
+- components/desktop/ExpertiseMarquee.tsx: right-to-left tool tiles with pause and reduced-motion support.
+- components/desktop/ScrollChoreography.tsx: scoped desktop scroll transforms for the Work/Experience folder stack.
+- MOTION-PLAN.md: animation placement, implementation status, and verification coverage.
+
 - app/page.tsx: server-rendered portfolio content, including FIUU and Experian experience.
 - components/Navbar.tsx: navigation accessible on desktop and mobile.
 - components/ProjectGallery.tsx: interactive All / Kotlin / Web / Database filters.

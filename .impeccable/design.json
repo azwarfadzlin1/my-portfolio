@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T08:12:01.413Z",
+  "title": "Design System: Azwar Fadzlin Portfolio",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "glass-rest",
+        "value": "0 4px 30px rgba(0,0,0,0.1)",
+        "purpose": "Resting glass cards."
+      },
+      {
+        "name": "hero-action-glow",
+        "value": "0 0 20px rgba(37,99,235,0.2)",
+        "purpose": "View Work action."
+      },
+      {
+        "name": "portrait",
+        "value": "0 0 50px rgba(0,0,0,0.5)",
+        "purpose": "Circular hero photograph."
+      }
+    ],
+    "motion": [
+      {
+        "name": "reveal-duration",
+        "value": "600ms",
+        "purpose": "Fade and rise 30px."
+      },
+      {
+        "name": "stagger",
+        "value": "200ms",
+        "purpose": "Reveal children in sequence."
+      },
+      {
+        "name": "card-transition",
+        "value": "300ms",
+        "purpose": "Card and filter state changes."
+      },
+      {
+        "name": "blob-loop",
+        "value": "7s infinite",
+        "purpose": "Decorative background movement."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Email draft button",
+      "kind": "button",
+      "refersTo": "button-email",
+      "description": "Pale-blue contact action.",
+      "html": "<button class=\"ds-email\">Open email draft</button>",
+      "css": ".ds-email{font:700 16px \"Space Grotesk\",sans-serif;min-height:44px;padding:12px 24px;border:0;border-radius:12px;background:var(--color-blue-100,oklch(93.2% 0.032 255.585));color:var(--color-blue-900,oklch(37.9% 0.146 265.522));transition:background-color 150ms}.ds-email:hover{background:#fff}.ds-email:focus-visible{outline:2px solid #93c5fd;outline-offset:4px}"
+    },
+    {
+      "name": "Secondary hero action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent bordered contact anchor.",
+      "html": "<a class=\"ds-secondary\" href=\"#contact\">Contact Me</a>",
+      "css": ".ds-secondary{display:inline-block;font:600 16px \"Space Grotesk\",sans-serif;color:#fff;text-decoration:none;border:1px solid #ffffff1a;border-radius:8px;background:transparent;padding:16px 32px;backdrop-filter:blur(12px);transition:background-color 150ms}.ds-secondary:hover{background:#ffffff0d}.ds-secondary:focus-visible{outline:2px solid #93c5fd;outline-offset:4px}"
+    },
+    {
+      "name": "Selected project filter",
+      "kind": "button",
+      "refersTo": "filter-active",
+      "description": "Pressed category filter.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All</button>",
+      "css": ".ds-filter{font:600 14px \"Space Grotesk\",sans-serif;border:0;border-radius:9999px;padding:10px 20px;background:var(--color-blue-600,oklch(54.6% 0.245 262.881));color:#fff;box-shadow:0 10px 15px -3px oklch(62.3% 0.214 259.815 / 30%),0 4px 6px -4px oklch(62.3% 0.214 259.815 / 30%);transition:all 300ms}.ds-filter:focus-visible{outline:2px solid #93c5fd;outline-offset:4px}"
+    },
+    {
+      "name": "Contact field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Dark input with blue label and focus.",
+      "html": "<label class=\"ds-label\" for=\"ds-name\">Name</label><input id=\"ds-name\" class=\"ds-input\" type=\"text\" placeholder=\"Enter your full name\">",
+      "css": ".ds-label{display:block;margin-bottom:8px;color:var(--color-blue-400,oklch(70.7% 0.165 254.624));font:700 14px \"Space Grotesk\",sans-serif}.ds-input{font:16px \"Space Grotesk\",sans-serif;padding:12px 16px;border:1px solid #ffffff26;border-radius:12px;background:#1a1a1c;color:#fff}.ds-input::placeholder{color:var(--color-zinc-400,oklch(70.5% 0.015 286.067))}.ds-input:focus{border-color:var(--color-blue-400,oklch(70.7% 0.165 254.624))}.ds-input:focus-visible{outline:2px solid #93c5fd;outline-offset:4px}"
+    },
+    {
+      "name": "Technology chip",
+      "kind": "chip",
+      "refersTo": "glass-chip",
+      "description": "Static technology label.",
+      "html": "<span class=\"ds-chip\">Kotlin</span>",
+      "css": ".ds-chip{display:inline-block;padding:4px 12px;border:1px solid #ffffff1a;border-radius:9999px;background:#ffffff0d;backdrop-filter:blur(4px);color:var(--color-zinc-300,oklch(87.1% 0.006 286.286));font:500 12px/16px \"Space Grotesk\",sans-serif}"
+    },
+    {
+      "name": "Glass information card",
+      "kind": "card",
+      "refersTo": "glass-card",
+      "description": "Reused translucent information panel.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-title\">Mobile Development</h3><p>Building Android experiences with Kotlin and Jetpack Compose.</p></article>",
+      "css": ".ds-card{position:relative;overflow:hidden;padding:32px;border:1px solid #ffffff1a;border-radius:16px;background:oklch(21% 0.006 285.885 / 40%);backdrop-filter:blur(24px);box-shadow:0 4px 30px #0000001a;color:var(--color-zinc-400,oklch(70.5% 0.015 286.067));font:14px/1.625 \"Space Grotesk\",sans-serif;transition:all 300ms}.ds-title{font:700 20px/28px Archivo,sans-serif;color:#fff;margin:0 0 16px}.ds-card::before{content:\"\";position:absolute;inset:0;background:linear-gradient(to bottom right,#ffffff0d,transparent);opacity:0;pointer-events:none;transition:opacity 300ms}.ds-card:hover::before{opacity:1}.ds-card:hover{border-color:#ffffff33;transform:translateY(-4px);box-shadow:0 10px 15px -3px oklch(62.3% 0.214 259.815 / 10%),0 4px 6px -4px oklch(62.3% 0.214 259.815 / 10%)}@media(prefers-reduced-motion:reduce){.ds-card{transition:none}.ds-card:hover{transform:none}}"
+    },
+    {
+      "name": "Main navigation links",
+      "kind": "nav",
+      "description": "Header link styling and second-row mobile arrangement.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#home\">Home</a><a href=\"#projects\">Projects</a><a href=\"#experience\">Experience</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;justify-content:space-between;gap:8px;width:100%;padding-bottom:8px;font:500 12px/16px \"Space Grotesk\",sans-serif}.ds-nav a{display:flex;align-items:center;min-height:44px;color:var(--color-zinc-300,oklch(87.1% 0.006 286.286));text-decoration:none}.ds-nav a:hover{color:#fff}.ds-nav a:focus-visible{outline:2px solid #93c5fd;outline-offset:4px}@media(min-width:768px){.ds-nav{width:auto;gap:32px;padding-bottom:0;font-size:14px;line-height:20px}}"
+    }
+  ],
+  "narrative": {
+    "overview": "**Status:** Current implementation snapshot, documented on 11 October 2026. This file describes the website before its proposed complete overhaul. It is a baseline, not an approved direction for the redesign. Existing choices are recorded accurately even where they would benefit from replacement.\n\n**Current visual direction:** A dark technical portfolio with glass surfaces, blue and violet light effects, oversized geometric typography, and a large circular portrait. This is a descriptive label inferred from the implementation; no separate creative concept has been approved.\n\nThe page presents Azwar's software engineering work, current FIUU Product Development internship, education, and Experian experience. The visual hierarchy starts with a large personal introduction, then moves through project cards and résumé-style information. White headings and muted gray paragraphs sit on a nearly black canvas. Blue identifies actions and current status; purple and indigo distinguish capability categories and decorative effects.\n\n**Key characteristics:**\n\n- One long scrolling page with fixed navigation and anchor links.\n- Black and charcoal surfaces with translucent white borders.\n- Archivo display headings paired with Space Grotesk body text.\n- Blue-to-indigo gradient lettering and localized colored glows.\n- Repeated rounded cards, technology chips, and icon-led headings.\n- A circular photograph as the hero's main visual asset.\n- Staggered entrances, hover transitions, and continuous decorative motion.",
+    "keyCharacteristics": [
+      "One long scrolling page with fixed navigation and anchor links.",
+      "Black and charcoal surfaces with translucent white borders.",
+      "Archivo display headings paired with Space Grotesk body text.",
+      "Blue-to-indigo gradient lettering and localized colored glows.",
+      "Repeated rounded cards, technology chips, and icon-led headings.",
+      "A circular photograph as the hero's main visual asset.",
+      "Staggered entrances, hover transitions, and continuous decorative motion."
+    ],
+    "rules": [],
+    "dos": [
+      "Do use this document to understand what exists and where it is implemented before replacing it.",
+      "Do preserve accurate portfolio facts, real project assets, résumé access, and working contact routes unless the owner requests a content change.",
+      "Do keep mobile navigation, keyboard focus, form-label associations, and reduced-motion behavior in the replacement.",
+      "Do distinguish static labels from clickable actions and keep action labels accurate about what happens.",
+      "Do define a coherent replacement token system for colors, typography, spacing, radii, elevation, and motion when the overhaul begins.",
+      "Do review the long page's hierarchy, repeated card treatments, large heading jumps, public reference details, and nested contact containers as redesign opportunities."
+    ],
+    "donts": [
+      "Don't treat current glass effects, gradients, black backgrounds, circular imagery, or typography as approved requirements for the overhaul.",
+      "Don't invent a future creative direction, component library, CMS, email service, or animation library and describe it as already implemented.",
+      "Don't present the old portfolio screenshot as a screenshot of the current website.",
+      "Don't claim the contact form sends email directly or that opening a draft confirms delivery.",
+      "Don't claim the visitor badge measures unique people without verifying the external API's counting rules.",
+      "Don't remove accessibility fallbacks while changing reveals, hover effects, or navigation.",
+      "Don't confuse source-derived documentation with a live visual audit or an approved redesign specification."
+    ]
+  }
+}
