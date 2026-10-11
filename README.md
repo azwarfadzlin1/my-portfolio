@@ -39,3 +39,7 @@ Project filter membership is defined in ProjectGallery.tsx. UniMove's demo video
 The page's static content remains server rendered. Small client components handle filtering, email drafts, visitor count and motion. Reduced-motion preferences disable decorative motion; a no-JavaScript fallback keeps animated content visible.
 
 The historical product management project's precise technology stack should be confirmed before adding specific database/tool claims. Existing Experian role dates are preserved because the resume's consolidated service desk date range overlaps its internship entries.
+
+## Production routes
+
+The desktop-inspired redesign is the homepage at `/`. The former `/preview` route redirects to `/`. The original dark portfolio remains available at `/classic` and is excluded from search indexing. Weather is served by `/api/weather`.
