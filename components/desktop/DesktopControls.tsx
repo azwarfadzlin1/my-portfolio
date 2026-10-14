@@ -20,11 +20,13 @@ const zone = "Asia/Kuala_Lumpur";
 
 const projects = [
 
-  { id: "unimove", name: "UniMove", category: "Android application", description: "A fitness tracking app for routes, pace, challenges, and a community feed. Built with Kotlin, Jetpack Compose, Firebase, and Google Maps, with Wear OS support.", tags: ["Kotlin", "Jetpack Compose", "Firebase", "Google Maps"], image: "/unimove_logo.png", href: "https://github.com/azwarfadzlin1/UniMove", linkLabel: "View source on GitHub" },
+  { id: "unimove", name: "UniMove", category: "Android application", description: "Campus fitness tracking app, built as my final year project.", details: ["Tracks distance, pace, and routes in real time using Google Maps API and Play Services Location.", "Firebase Authentication and Cloud Firestore provide secure user management and real-time data synchronization.", "Leaderboards, challenges, and a community activity feed encourage participation.", "MVVM architecture and Kotlin Coroutines support responsive performance; system design extends to Wear OS smartwatch tracking."], tags: ["Kotlin", "Jetpack Compose", "Firebase", "Google Maps SDK", "MVVM", "Git", "Node.js"], image: "/unimove_logo.png", href: "https://github.com/azwarfadzlin1/UniMove", linkLabel: "View source on GitHub" },
 
-  { id: "product", name: "Product system", category: "Web & database project", description: "A web-based product and inventory management project for organizing structured records and query operations. This screenshot shows the project's Phone Seller interface.", tags: ["Web development", "Database design", "Product records"], image: "/web_product.png", href: null, linkLabel: null },
+  { id: "jomeco", name: "JomEco", category: "Sustainable lifestyle app", description: "An Android application for sustainable living and eco-friendly community engagement.", details: ["TensorFlow Lite and CameraX power real-time, on-device waste classification.", "ML Kit barcode scanning supports event check-ins and product information retrieval.", "Room Database provides offline persistence; Retrofit REST APIs synchronize environmental initiatives and community event data.", "Built with MVVM, Kotlin Coroutines, and responsive Material 3 UI components."], tags: ["TensorFlow Lite", "ML Kit", "CameraX", "Room", "Retrofit", "MVVM", "Coroutines", "Material 3"], image: null, href: null, linkLabel: null },
 
-  { id: "portfolio", name: "Portfolio", category: "Design & development", description: "My personal corner of the web, built with Next.js, React, and TypeScript. This new direction explores a desktop-inspired interface with responsive widgets, project windows, and accessible navigation.", tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"], image: null, href: "https://github.com/azwarfadzlin1", linkLabel: "Visit my GitHub" },
+  { id: "product", name: "Product system", category: "Web & database project", description: "A web-based product and inventory management project for organizing structured records and query operations. This screenshot shows the project's Phone Seller interface.", details: [], tags: ["Web development", "Database design", "Product records"], image: "/web_product.png", href: null, linkLabel: null },
+
+  { id: "portfolio", name: "Portfolio", category: "Design & development", description: "My personal corner of the web, built with Next.js, React, and TypeScript.", details: ["Responsive desktop-inspired interface with animated widgets, project windows, and accessible navigation.", "Tailwind CSS powers the responsive layout and UI styling.", "Integrated Supabase for backend data management and deployed on Vercel with automated CI/CD."], tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Vercel"], image: null, href: "https://github.com/azwarfadzlin1", linkLabel: "Visit my GitHub" },
 
 ];
 
@@ -375,6 +377,7 @@ export function ProjectFolders({ location = "hero" }: { location?: "hero" | "sec
       {selected && <div className="os-project-body">
 
         <p className="os-eyebrow">{selected.category}</p><h2 id={`project-title-${location}`}>{selected.name}</h2><p>{selected.description}</p>
+        {selected.details.length > 0 && <ul className="os-project-features">{selected.details.map(detail => <li key={detail}>{detail}</li>)}</ul>}
 
         {selected.id === "unimove" ? <video controls playsInline preload="none" poster="/unimove_logo.png" aria-label="UniMove app demonstration" src="https://qclpiuhdwqbptuswqouv.supabase.co/storage/v1/object/public/unimove_videos/unimove-videos_GqQc8gWa.mp4" /> : selected.image && <Image src={selected.image} alt="Phone Seller product management project interface" width={1844} height={892} sizes="(max-width: 767px) 90vw, 650px" />}
 

@@ -630,7 +630,6 @@
 
 .os-marquee-viewport[data-paused="true"] .os-expertise-track { animation-play-state: paused; }
 
-@media (hover: hover) { .os-marquee-viewport:hover .os-expertise-track { animation-play-state: paused; } }
 
 @keyframes os-expertise-loop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 

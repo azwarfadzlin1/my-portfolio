@@ -5,30 +5,86 @@
 import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
+import type { WeatherForecast } from "@/lib/weather";
+import { SiGmail } from "react-icons/si";
 
 import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 
-import { Music2, Pause, Play, SkipBack, SkipForward, Sun, Cloud } from "lucide-react";
+import { Pause, Play, SkipBack, SkipForward, Sun, CloudRain, CloudLightning, Haze, FileText } from "lucide-react";
 
 
 
-export function MusicPlaceholder() {
+const formatTime = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, "0")}`;
 
+export function MusicWidget() {
+  const audio = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
-
-  return <section className="os-music os-widget" aria-label="Music player placeholder"><div className="os-music-main"><div className="os-album-placeholder"><Music2 size={23} /><span>ARTWORK</span></div><div><strong>Your favourite track</strong><p>Music placeholder</p><div className="os-music-controls"><button disabled aria-label="Previous track"><SkipBack size={13} /></button><button aria-label={playing ? "Pause music preview" : "Play music preview"} onClick={() => setPlaying(!playing)}>{playing ? <Pause size={15} /> : <Play size={15} />}</button><button disabled aria-label="Next track"><SkipForward size={13} /></button></div></div></div><div className="os-music-progress" /><p className="os-music-status" aria-live="polite">{playing ? "Visual preview · no audio connected" : "Add your song later · no audio connected"}</p></section>;
-
+  const [duration, setDuration] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    // Metadata may arrive before hydration attaches the media event handlers.
+    const timer = setTimeout(() => {
+      const value = audio.current?.duration;
+      if (value && Number.isFinite(value)) setDuration(value);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
+  async function togglePlayback() {
+    const player = audio.current;
+    if (!player) return;
+    if (!player.paused) { player.pause(); return; }
+    try { await player.play(); setError(null); }
+    catch { setError("Couldn't play audio. Try again."); }
+  }
+  function updateDuration() {
+    const value = audio.current?.duration;
+    if (value && Number.isFinite(value)) setDuration(value);
+  }
+  return <section className="os-music os-widget" aria-label="Music player: Who's Lovin' You by The Jackson 5">
+    <audio ref={audio} src="/videoplayback.weba" preload="metadata" onLoadedMetadata={updateDuration} onDurationChange={updateDuration} onTimeUpdate={() => setElapsed(audio.current?.currentTime ?? 0)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => { setPlaying(false); setError("Audio unavailable. Please reload."); }} />
+    <div className="os-music-main"><Image className="os-album-art" src="/music/jackson-5-ultimate-collection.jpg" alt="The Ultimate Collection album artwork by Jackson 5" width={65} height={65} /><div className="os-track-details"><strong>Who&apos;s Lovin&apos; You</strong><p>The Jackson 5</p><div className="os-music-controls">
+      <button type="button" aria-label="Restart track" onClick={() => { if (audio.current) audio.current.currentTime = 0; setElapsed(0); }}><SkipBack size={13} /></button>
+      <button type="button" aria-label={playing ? "Pause music" : "Play music"} onClick={() => void togglePlayback()}>{playing ? <Pause size={15} /> : <Play size={15} />}</button>
+      <button type="button" disabled aria-label="Next track (only one song)"><SkipForward size={13} /></button>
+    </div></div></div>
+    <input className="os-music-seek" style={{ backgroundImage: `linear-gradient(to right, #666 ${duration ? elapsed / duration * 100 : 0}%, #dfe0e3 ${duration ? elapsed / duration * 100 : 0}%)` }} type="range" aria-label="Seek in song" aria-valuetext={`${formatTime(elapsed)} of ${formatTime(duration)}`} min={0} max={duration || 1} step={0.1} value={Math.min(elapsed, duration || 0)} disabled={!duration} onChange={event => { const value = Number(event.target.value); if (audio.current) audio.current.currentTime = value; setElapsed(value); }} />
+    <div className="os-music-time"><span>{formatTime(elapsed)}</span><span>{duration ? `−${formatTime(Math.max(0, duration - elapsed))}` : "—:——"}</span></div>
+    {error && <p className="os-music-status" role="status">{error}</p>}
+  </section>;
 }
 
-
-
-export function WeatherPlaceholder() {
-
-  return <section className="os-weather os-widget" aria-label="Malaysia weather placeholder"><div><span>Malaysia</span><span>Weather preview</span></div><ul>{["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day, i) => <li key={day}><span>{day}</span>{i === 2 || i === 3 ? <Cloud size={14} /> : <Sun size={14} />}<span>—</span></li>)}</ul></section>;
-
+export function WeatherWidget() {
+  const [forecast, setForecast] = useState<WeatherForecast | null>(null);
+  const [error, setError] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+  useEffect(() => {
+    const controller = new AbortController();
+    async function load() {
+      try {
+        const response = await fetch("/api/weather", { signal: controller.signal });
+        if (!response.ok) throw new Error("Forecast unavailable");
+        const data: WeatherForecast = await response.json();
+        if (!data.days?.length) throw new Error("Empty forecast");
+        setForecast(data); setError(false);
+      } catch { if (!controller.signal.aborted) setError(true); }
+    }
+    void load();
+    const timer = setInterval(() => void load(), 30 * 60 * 1000);
+    return () => { controller.abort(); clearInterval(timer); };
+  }, [attempt]);
+  return <section className="os-weather os-widget" aria-label="Shah Alam weather forecast">
+    <div><span>Shah Alam</span><a href="https://developer.data.gov.my/realtime-api/weather" target="_blank" rel="noopener noreferrer" aria-label="Weather source: MET Malaysia via data.gov.my">MET Malaysia</a></div>
+    {forecast ? <ul>{forecast.days.map(day => {
+      const summary = day.summary.toLowerCase();
+      const Icon = summary.includes("ribut") ? CloudLightning : summary.includes("tiada") ? Sun : summary.includes("hujan") ? CloudRain : Haze;
+      const date = new Date(`${day.date}T12:00:00+08:00`);
+      const weekday = new Intl.DateTimeFormat("en-GB", { weekday: "short", timeZone: "Asia/Kuala_Lumpur" }).format(date);
+      return <li key={day.date} title={`${day.date}: ${day.summary}, ${day.low}–${day.high}°C`} aria-label={`${weekday}, ${day.summary}, low ${day.low}, high ${day.high} degrees Celsius`}><time dateTime={day.date}>{weekday}</time><Icon size={14} aria-hidden="true" /><span>{day.high}°<small>{day.low}°</small></span></li>;
+    })}</ul> : !error && <p className="os-weather-message" role="status">Loading forecast…</p>}
+    {error && <p className="os-weather-message" role="status">{forecast ? "Couldn't refresh forecast." : "Forecast unavailable."} <button type="button" onClick={() => { setError(false); setAttempt(value => value + 1); }}>Retry</button></p>}
+  </section>;
 }
-
-
 
 const apps = [
 
@@ -38,7 +94,7 @@ const apps = [
 
   { label: "Gmail", mark: "M", image: null, href: "mailto:azwarfadzlin1@gmail.com" },
 
-  { label: "Whatsapp", mark: "WS", image: "/app_icon_image/whatsapp.webp", href: "https://wa.me/<60><142913880>" },
+  { label: "Whatsapp", mark: "WS", image: "/app_icon_image/whatsapp.webp", href: "https://wa.me/60142913880" },
 
   { label: "Resume", mark: "CV", image: null, href: "/Azwar%20Fadzlin%20Resume.pdf" },
 
@@ -96,9 +152,9 @@ export function DraggableApps() {
 
     <div className="os-palette-grid">{apps.map(app => {
 
-      const icon = app.image ? <Image src={app.image} alt="" width={34} height={34} draggable={false} /> : <span aria-hidden="true">{app.mark}</span>;
+      const icon = app.label === "Gmail" ? <SiGmail aria-hidden="true" /> : app.label === "Resume" ? <FileText aria-hidden="true" /> : app.image ? <Image src={app.image} alt="" width={34} height={34} draggable={false} /> : <span aria-hidden="true">{app.mark}</span>;
 
-      return app.href ? <a key={app.label} className={app.image ? "os-app-asset" : undefined} draggable={false} href={app.href} title={app.image ? app.label : `${app.label} · icon pending`} aria-label={app.label} target={app.href.startsWith("https") ? "_blank" : undefined} rel={app.href.startsWith("https") ? "noopener noreferrer" : undefined}>{icon}</a> : <span className={`os-app-placeholder${app.image ? " os-app-asset" : ""}`} key={app.label} title={app.label} aria-label={app.label}>{icon}</span>;
+      return app.href ? <a key={app.label} className={(app.image || app.label === "Gmail" || app.label === "Resume") ? "os-app-asset" : undefined} draggable={false} href={app.href} download={app.label === "Resume" || undefined} title={app.image ? app.label : `${app.label} · icon pending`} aria-label={app.label} target={app.href.startsWith("https") ? "_blank" : undefined} rel={app.href.startsWith("https") ? "noopener noreferrer" : undefined}>{icon}</a> : <span className={`os-app-placeholder${app.image ? " os-app-asset" : ""}`} key={app.label} title={app.label} aria-label={app.label}>{icon}</span>;
 
     })}</div>
 

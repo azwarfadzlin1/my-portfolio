@@ -1,29 +1,27 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { TestTubes } from "lucide-react";
-import { FaAws, FaJava } from "react-icons/fa";
-import { SiFirebase, SiGit, SiJetpackcompose, SiKotlin, SiNextdotjs, SiReact, SiTailwindcss, SiTypescript } from "react-icons/si";
+import Image from "next/image";
 
 const tools = [
-  { name: "Kotlin", Icon: SiKotlin, tone: "kotlin" },
-  { name: "Jetpack Compose", Icon: SiJetpackcompose, tone: "compose" },
-  { name: "Java", Icon: FaJava, tone: "java" },
-  { name: "React", Icon: SiReact, tone: "react" },
-  { name: "Next.js", Icon: SiNextdotjs, tone: "next" },
-  { name: "TypeScript", Icon: SiTypescript, tone: "typescript" },
-  { name: "Tailwind CSS", Icon: SiTailwindcss, tone: "tailwind" },
-  { name: "Firebase", Icon: SiFirebase, tone: "firebase" },
-  { name: "Playwright", Icon: TestTubes, tone: "playwright" },
-  { name: "Git", Icon: SiGit, tone: "git" },
-  { name: "AWS", Icon: FaAws, tone: "aws" },
+  { name: "Kotlin", logo: "kotlin" },
+  { name: "Jetpack Compose", logo: "compose" },
+  { name: "Java", logo: "java" },
+  { name: "React", logo: "react" },
+  { name: "Next.js", logo: "next" },
+  { name: "TypeScript", logo: "typescript" },
+  { name: "Tailwind CSS", logo: "tailwind" },
+  { name: "Firebase", logo: "firebase" },
+  { name: "Playwright", logo: "playwright" },
+  { name: "Git", logo: "git" },
+  { name: "AWS", logo: "aws" },
 ];
 
 export default function ExpertiseMarquee() {
   const region = useRef<HTMLElement>(null);
   const group = useRef<HTMLUListElement>(null);
   const track = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(true);
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -53,8 +51,8 @@ export default function ExpertiseMarquee() {
     <div className="os-marquee-viewport" data-paused={!inView || hidden}>
       <div ref={track} className="os-expertise-track">
         {[false, true].map(duplicate => <ul key={String(duplicate)} ref={duplicate ? undefined : group} className="os-expertise-group" aria-hidden={duplicate || undefined} aria-label={duplicate ? undefined : "Tools and technologies"}>
-          {tools.map(({ name, Icon, tone }) => <li key={name}>
-            <span className={`os-expertise-icon os-tool-${tone}`}><Icon aria-hidden="true" /></span>
+          {tools.map(({ name, logo }) => <li key={name}>
+            <span className="os-tool-logo"><Image src={`/tool-logos/${logo}.svg`} alt="" width={52} height={52} loading="eager" unoptimized /></span>
             <span className="os-expertise-label">{name}</span>
           </li>)}
         </ul>)}

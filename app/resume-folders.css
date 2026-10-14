@@ -1,0 +1,111 @@
+/* A stack of resume folders, sized to the content rather than the device. */
+.os-resume-stack { position: relative; isolation: isolate; padding: 38px clamp(8px, 2vw, 28px) 80px; background: #fff; }
+.os-folder-marker { height: 0; }
+.os-resume-folder {
+  --folder-color: #bddaf4;
+  --folder-edge: #5893bf;
+  position: relative;
+  z-index: calc(1 + var(--folder-index));
+  margin-bottom: 48px;
+  padding: 0;
+  background: var(--folder-color);
+  border-radius: 12px 12px 0 0;
+  border-top: 2px solid var(--folder-edge);
+  box-shadow: 0 -3px 6px #27334728;
+  transform-origin: center top;
+  scroll-margin-top: 64px;
+}
+.os-resume-folder[data-scroll-folder="true"] { position: sticky; top: var(--folder-top); height: var(--folder-height); }
+.os-resume-folder[data-scroll-folder="true"] .os-folder-viewport { height: 100%; overflow: hidden; }
+.os-resume-folder:nth-of-type(1) { --folder-index: 0; }
+.os-resume-folder:nth-of-type(2) { --folder-index: 1; }
+.os-resume-folder:nth-of-type(3) { --folder-index: 2; }
+.os-resume-folder:nth-of-type(4) { --folder-index: 3; }
+.os-resume-folder:nth-of-type(5) { --folder-index: 4; }
+.os-resume-folder:nth-of-type(6) { --folder-index: 5; }
+.os-dossier-fiuu { --folder-color: #d6c5ec; --folder-edge: #9372b8; }
+.os-dossier-experian { --folder-color: #adc5dc; --folder-edge: #6386aa; }
+.os-dossier-education { --folder-color: #c0d9be; --folder-edge: #6c956b; }
+.os-dossier-skills { --folder-color: #abd9d5; --folder-edge: #4f9690; }
+.os-dossier-awards { --folder-color: #efd19a; --folder-edge: #b98b3b; }
+.os-resume-tab { position: absolute; top: -38px; left: calc(16px + var(--folder-index) * clamp(20px, 10vw, 140px)); min-width: 100px; height: 38px; padding: 9px 16px; border-radius: 10px 10px 0 0; background: var(--folder-color); border-top: 2px solid var(--folder-edge); color: #253042; font-size: 12px; font-weight: 700; text-align: center; }
+.os-resume-content { max-width: 1168px; padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 64px); margin: auto; transform-origin: center top; }
+.os-dossier-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 6vw, 80px); align-items: start; }
+.os-dossier-heading h2 { font-size: clamp(30px, 3.8vw, 48px); line-height: 1.12; font-weight: 700; letter-spacing: -.035em; text-wrap: balance; margin: 20px 0; }
+.os-file-label, .os-history-date { font-size: 12px; line-height: 1.6; color: #414a58; }
+.os-dossier-heading p { font-size: 14px; line-height: 1.8; color: #414a58; max-width: 55ch; text-wrap: pretty; }
+.os-dossier-heading p + p { margin-top: 14px; }
+.os-dossier-heading .os-role-title { color: #242b36; font-weight: 650; font-size: 17px; }
+.os-dossier-heading .os-text-link { margin-top: 24px; }
+.os-resume-stack .os-text-link { color: #074f91; }
+.os-field-notes { background: #fff; border-radius: 8px; overflow: hidden; }
+.os-note-title { font-size: 12px; background: #f7f7fa; padding: 15px 24px; border-bottom: 1px solid #e3e5ea; color: #414a58; }
+.os-field-notes dl { padding: 8px 24px; }
+.os-field-notes dl > div { padding: 16px 0; }
+.os-field-notes dl > div + div { border-top: 1px solid #e3e5ea; }
+.os-field-notes dt, .os-skill-index dt { font-size: 15px; font-weight: 650; color: #252c36; margin-bottom: 6px; }
+.os-field-notes dd, .os-skill-index dd { font-size: 13px; line-height: 1.75; color: #414a58; }
+.os-role-history article + article, .os-education-records article + article { border-top: 1px solid #bfc8d1; padding-top: 24px; margin-top: 26px; }
+.os-resume-folder h3 { font-size: 19px; line-height: 1.35; font-weight: 650; margin: 6px 0 10px; text-wrap: balance; }
+.os-role-history ul, .os-education-records ul, .os-project-features { list-style: disc; padding-left: 18px; display: grid; gap: 8px; font-size: 13px; line-height: 1.75; color: #414a58; }
+.os-education-records > article > p { font-size: 14px; line-height: 1.75; color: #414a58; }
+.os-academic-result { display: flex; flex-direction: column; gap: 3px; margin: 18px 0; }
+.os-academic-result strong { font-size: 28px; font-weight: 650; color: #344839; }
+.os-academic-result strong span { font-size: 15px; font-weight: 400; }
+.os-academic-result > span { font-size: 12px; color: #414a58; }
+.os-skill-index > div { padding: 17px 0; border-bottom: 1px solid #bec9d8; }
+.os-skill-index > div:first-child { padding-top: 0; }
+.os-award-records { list-style: none; padding: 0; display: grid; gap: 18px; }
+.os-award-records li { display: flex; align-items: center; gap: 18px; }
+.os-award-seal { flex: 0 0 38px; height: 38px; display: grid; place-items: center; border: 1px solid #a4884d; border-radius: 50%; color: #80632a; font-size: 24px; }
+.os-award-records h3 { margin: 0 0 3px; font-size: 16px; }
+.os-award-records p { font-size: 13px; color: #414a58; line-height: 1.6; }
+.os-work-dossier { text-align: center; }
+.os-work-dossier .os-dossier-heading p { margin-inline: auto; }
+.os-work-dossier .os-folders-section { flex-wrap: wrap; justify-content: center; gap: 32px 40px; margin: 38px 0 24px; }
+.os-work-dossier .os-folder-button { flex: 0 1 140px; min-width: 110px; }
+.os-work-dossier .os-folder-category { font-size: 11px; max-width: 140px; }
+.os-folder-hint, .os-dossier-heading .os-folder-hint { font-size: 12px; line-height: 1.7; color: #414a58; }
+.os-dossier-end { position: relative; z-index: 7; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: 38px max(24px, calc((100% - 1040px)/2)); background: #fff; font-size: 13px; color: #414a58; }
+.os-dossier-end a, .os-contact-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #0758b2; }
+.os-contact-strip { max-width: 1168px; margin: auto; padding: 55px clamp(24px, 5vw, 64px); display: flex; flex-wrap: wrap; gap: 26px 60px; justify-content: space-between; align-items: center; }
+.os-contact-strip h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; letter-spacing: -.03em; font-weight: 650; text-wrap: balance; }
+.os-contact-strip p { font-size: 13px; color: #414a58; margin-top: 12px; line-height: 1.7; }
+.os-contact-links { display: flex; flex-direction: column; font-size: 13px; }
+.os-project-features { margin: 0 0 24px; }
+.os-project-rail .os-folders-hero { flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .os-dossier-layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .os-dossier-heading h2 { max-width: 19ch; }
+  .os-resume-content { padding: 28px 16px 40px; }
+  .os-resume-tab { min-width: 90px; font-size: 11px; }
+  .os-work-dossier .os-dossier-heading h2 { margin-inline: auto; }
+  .os-work-dossier .os-folders-section { gap: 26px 12px; }
+  .os-work-dossier .os-folder-button { flex-basis: calc(50% - 12px); }
+  .os-dossier-end { align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .os-resume-folder { position: relative; top: auto; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .os-resume-tab { transition: transform 180ms cubic-bezier(.23, 1, .32, 1); transform-origin: center bottom; }
+  .os-resume-tab:active { transform: scale(.98); transition-duration: 100ms; }
+  .os-folder-art, .os-folder-front, .os-folder-paper { transition: transform 280ms cubic-bezier(.23, 1, .32, 1); }
+  .os-folder-front { transform-origin: center bottom; }
+  @media (hover: hover) and (pointer: fine) {
+    .os-resume-tab:hover { transform: translateY(-2px); }
+    .os-folder-button:hover .os-folder-art { transform: translateY(-4px) rotate(-1.5deg); }
+    .os-folder-button:hover .os-folder-front { transform: perspective(500px) rotateX(-22deg); }
+    .os-folder-button:hover .os-folder-paper { transform: translateY(-9px) rotate(-5deg); }
+  }
+}
+
+/* The original logos keep their own colors, without invented app tiles. */
+.os-tool-logo { width: 68px; height: 68px; display: grid; place-items: center; }
+.os-tool-logo img { width: 52px; height: 52px; object-fit: contain; }
+.os-expertise { background: #fff; }
+@media (max-width: 639px) {
+  .os-tool-logo { width: 56px; height: 56px; }
+  .os-tool-logo img { width: 44px; height: 44px; }
+}
