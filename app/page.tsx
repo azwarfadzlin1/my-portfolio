@@ -6,6 +6,7 @@ import { DesktopDock, MalaysiaWidgets, ProjectFolders } from "@/components/deskt
 import ResumeFolders from "@/components/desktop/ResumeFolders";
 import ExpertiseMarquee from "@/components/desktop/ExpertiseMarquee";
 import ScrollChoreography from "@/components/desktop/ScrollChoreography";
+import VisitorCounter from "@/components/VisitorCounter";
 import "./preview/preview.css";
 import "./resume-folders.css";
 
@@ -38,7 +39,7 @@ export default function PortfolioPage() {
         <div className="os-contact-links"><a href="mailto:azwarfadzlin1@gmail.com">Email Azwar <ArrowUpRight size={15} /></a><a href="https://wa.me/60142913880" target="_blank" rel="noopener noreferrer">WhatsApp &middot; +60 14-2913-880 <ArrowUpRight size={15} /></a><a href="https://linkedin.com/in/azwarfadzlin/" target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight size={15} /></a></div>
       </section>
     </main>
-    <footer className="os-footer"><a href="#home" className="os-monogram">af.</a><span>Azwar Fadzlin © 2026</span></footer>
+    <footer className="os-footer"><a href="#home" className="os-monogram">af.</a><span>Azwar Fadzlin &copy; 2026</span><VisitorCounter variant="desktop" /></footer>
     <DesktopDock />
     <ScrollChoreography />
   </div>;

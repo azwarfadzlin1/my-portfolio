@@ -20,6 +20,7 @@ Run npm ci, then npm run dev. Open http://localhost:3000. Run npm run lint and n
 - components/ProjectGallery.tsx: interactive All / Kotlin / Web / Database filters.
 - components/ContactForm.tsx: validates input and opens a prefilled email draft. It does not send email or save submissions. The visitor needs an email app or mailto handler and must send the draft themselves.
 - components/VisitorCounter.tsx: optional external visitor API with response validation and a ten-second timeout.
+- The homepage footer uses the light desktop visitor badge; `/classic` keeps its original badge. Both share the configured visitor API and one request per page session.
 - components/MotionProvider.tsx and lib/animations.ts: shared motion preferences and variants.
 - app/globals.css: styles, focus indicators, responsive text handling and reduced-motion overrides.
 - public/Azwar Fadzlin Resume.pdf: downloadable resume. Keep portfolio facts synchronized when replacing it.

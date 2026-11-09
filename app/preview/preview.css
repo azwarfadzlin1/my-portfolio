@@ -324,6 +324,11 @@
 
 .os-footer > a:last-child { margin-left: auto; display: flex; align-items: center; gap: 5px; min-height: 44px; }
 
+.os-visitor-counter { display: inline-flex; align-items: center; gap: 7px; margin-left: auto; padding: 8px 12px; border: 1px solid #dfe2e7; border-radius: 999px; background: #fff; color: var(--os-muted); font-size: 11px; line-height: 1.4; white-space: nowrap; }
+.os-visitor-counter svg { flex-shrink: 0; color: var(--os-blue); }
+.os-visitor-count { color: var(--os-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (max-width: 639px) { .os-footer .os-visitor-counter { margin-left: 0; } }
+
 .os-project-dialog { position: fixed; inset: 0; margin: auto; max-height: min(85dvh, 760px); width: min(700px, calc(100% - 40px)); padding: 0; border: 1px solid #dfe2e9; border-radius: 14px; background: white; color: var(--os-ink); box-shadow: 0 30px 100px #1c263a40; }
 
 .os-project-dialog::backdrop { background: #25304436; backdrop-filter: blur(7px); }

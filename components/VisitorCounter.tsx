@@ -27,7 +27,7 @@ function getVisitorCount() {
   return countRequest;
 }
 
-export default function VisitorCounter() {
+export default function VisitorCounter({ variant = "classic" }: { variant?: "classic" | "desktop" }) {
   const [count, setCount] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -39,6 +39,16 @@ export default function VisitorCounter() {
     );
     return () => { active = false; };
   }, []);
+
+  if (variant === "desktop") {
+    return (
+      <div className="os-visitor-counter" role="status" aria-live="polite" aria-atomic="true">
+        <Users size={14} strokeWidth={1.8} aria-hidden="true" />
+        <span className="os-visitor-count">{failed ? "Unavailable" : count === null ? "Loading\u2026" : count.toLocaleString("en-MY")}</span>
+        <span>Visitors</span>
+      </div>
+    );
+  }
 
   return (
     <div className="relative group cursor-default">
